@@ -23,3 +23,17 @@ parcel whatEverName.html
 maps % parcel index.html
 Server running at http://localhost:1234
 ✨ Built in 6.08s.
+
+now, go check to google chrome and insect the file , you will see that the the typescript.ts file has been inject by parcel and its name is totally different
+this is what i got
+
+<script type="text/javascript" src="chrome-extension://aalppolilappfakpmdfdkpppdnhpgifn/installHook.js"></script>
+
+<h2>3</h2>
+if we take a higher look at we are trying to do, we can conclude that we need to create 3 classes/objects that need to be interacted with each other which they are User, Company and Map
+Each class has its own methods
+it a convention to name your file with uppercase if you are intended to create and export a class from it
+
+<h2>4</h2>
+since each class needs a random information such as name and address , we are gonna use a npm lib called <a
+style={"font-size:1.8rem; color:purple"} href="https://www.npmjs.com/package/faker">faker</a>
