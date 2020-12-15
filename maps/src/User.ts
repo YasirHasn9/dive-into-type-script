@@ -5,7 +5,7 @@
 // faker that can generate a lot of information such name and addresses
 
 import faker from "faker";
-class User {
+export class User {
     // here we are saying to ts we are gonna have property,
     // one of them is name which string and a location object;
     // This is for ts only.
@@ -23,3 +23,4 @@ class User {
     }
 
 }
+ 
