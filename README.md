@@ -41,6 +41,20 @@ style={"font-size:1.8rem; color:purple"} href="https://www.npmjs.com/package/fak
 ## <h3>Caveat</h3>
 
 sometimes when we use a js lib module ts does not have all the information to check the code completely so we got some error.
-And you can check these error by hovering over the module, you may see something like that "Could not find a declaration file for module " the name of the module" . again ts needs to know all the js code and its value type that are floating around the app.
+And you can check these error by hovering over the module, you may see something like that <strong>"Could not find a declaration file for module " the name of the module" </strong> . again ts needs to know all the js code and its value type that are floating around the app.
 so to fix this, ts have the idea of type definition files , you can think of it as an adapter between the code that we write and js.
 sometimes libraries may have type definition files already so we don't need to install it like Axios;
+
+<h2>Generate a Google dev project </h2>
+go to <a href="http://console.developers.google.com"> console devs google</a>
+
+<bold>**_ Note _** </bold>
+now , if you type google in the console you will see that the browser understand that we have a global variable called google but in ts we dont because as i mentioned before , it needs for type definition file to make ts understands that we have a global google variable
+to fix it again , we need to install a lib called @types/googlemaps
+
+<strong>
+<i>SEE</i>
+</strong>
+when you see declare namespace , ts understand this variable is a global variable
+
+when you see the var?: the "?" means this ts type is optional

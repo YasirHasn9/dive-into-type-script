@@ -1,9 +1,11 @@
- import {User} from "./User"
- import {Company} from "./Company"
-import { commerce } from "faker"
+//  import {User} from "./User"
+//  import {Company} from "./Company"
 
- let user = new User()
- let company = new Company()
- 
- console.log("user", user)
- console.log("Company", company)
+ new google.maps.Map(document.getElementById("map"),{
+    
+     zoom:1,
+     center:{
+        lat:0,
+        lng:0,
+    },
+ });
