@@ -6,10 +6,20 @@
 
 import faker from "faker";
 class User {
+    // here we are saying to ts we are gonna have property,
+    // one of them is name which string and a location object;
+    // This is for ts only.
     name:string;
     location: {
         lat:number;
         lng:number
     };
+    constructor(){
+        this.name = faker.name.findName();
+        this.location = {
+            lat:parseFloat(faker.address.latitude()),
+            lng:parseFloat(faker.address.longitude()),
+        }
+    }
 
 }
