@@ -58,3 +58,9 @@ to fix it again , we need to install a lib called @types/googlemaps
 when you see declare namespace , ts understand this variable is a global variable
 
 when you see the var?: the "?" means this ts type is optional
+
+<h2>5</h2>
+create a CustomMap class 
+sometimes when we use a global class/object that contains a lot of methods, playing with these methods may break our app
+To prevent that, we can create a custom class where we expose a bare minimum of its functionality and hide the other. That would prevent other engineers form playing with it
+<strong>Also</strong> in default any type we declare in ts , by default has a modifier which is public that enables us to use outside where we declare it. In some cases, we want to make private and only be used only inside the { } that we determine , to do so TS has another modifier called <bold><i>private</i></bold>

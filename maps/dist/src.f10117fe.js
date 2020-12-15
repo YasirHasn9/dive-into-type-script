@@ -117,17 +117,49 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.ts":[function(require,module,exports) {
-//  import {User} from "./User"
-//  import {Company} from "./Company"
-new google.maps.Map(document.getElementById("map"), {
-  zoom: 1,
-  center: {
-    lat: 0,
-    lng: 0
-  }
+})({"src/CustomMap.ts":[function(require,module,exports) {
+"use strict"; // originally , the global object of google has a lot of methods 
+// playing with these methods may break our app.
+// so to prevent other engineers from that, we can create a custom map object and limit it 
+// so others cant play with it 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-},{}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+exports.CustomMap = void 0; // CustomMaps will internally will create a google maps for us 
+// because we don't other to get access to google, so we need to isolate the google 
+// and only expose a bare minimum amount of functionality
+
+var CustomMap =
+/** @class */
+function () {
+  // when we hard coded the name of the id, we limit ourselves from reuse in different places 
+  // so to make reusable in many places we can create an argument and use wherever we want
+  function CustomMap(divID) {
+    this.googleMap = new google.maps.Map(document.getElementById(divID), {
+      zoom: 1,
+      center: {
+        lat: 0,
+        lng: 0
+      }
+    });
+  }
+
+  return CustomMap;
+}();
+
+exports.CustomMap = CustomMap;
+},{}],"src/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var CustomMap_1 = require("./CustomMap");
+
+new CustomMap_1.CustomMap("map");
+},{"./CustomMap":"src/CustomMap.ts"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
