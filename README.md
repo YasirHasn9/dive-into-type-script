@@ -37,3 +37,10 @@ it a convention to name your file with uppercase if you are intended to create a
 <h2>4</h2>
 since each class needs a random information such as name and address , we are gonna use a npm lib called <a
 style={"font-size:1.8rem; color:purple"} href="https://www.npmjs.com/package/faker">faker</a>
+
+## <h3>Caveat</h3>
+
+sometimes when we use a js lib module ts does not have all the information to check the code completely so we got some error.
+And you can check these error by hovering over the module, you may see something like that "Could not find a declaration file for module " the name of the module" . again ts needs to know all the js code and its value type that are floating around the app.
+so to fix this, ts have the idea of type definition files , you can think of it as an adapter between the code that we write and js.
+sometimes libraries may have type definition files already so we don't need to install it like Axios;
