@@ -63,4 +63,13 @@ when you see the var?: the "?" means this ts type is optional
 create a CustomMap class 
 sometimes when we use a global class/object that contains a lot of methods, playing with these methods may break our app
 To prevent that, we can create a custom class where we expose a bare minimum of its functionality and hide the other. That would prevent other engineers form playing with it
-<strong>Also</strong> in default any type we declare in ts , by default has a modifier which is public that enables us to use outside where we declare it. In some cases, we want to make private and only be used only inside the { } that we determine , to do so TS has another modifier called <bold><i>private</i></bold>
+<strong>Also</strong> in default any type we declare in ts , by default has a modifier which is <h3><bold><i>public</i></bold></h3> that enables us to use outside where we declare it. In some cases, we want to make private and only be used only inside the { } that we determine , to do so TS has another modifier called <h3><bold><i>private</i></bold></h3>
+
+<h3>Void</h3>
+when we dont return anything from a function we use a void
+
+function functionDoesNotReturnAnyThing(): void {
+
+}
+
+<h3>|</h3> it means or when you have 2 or more that one type

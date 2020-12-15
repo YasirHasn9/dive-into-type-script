@@ -1,3 +1,6 @@
+import {User} from "./User"
+import {Company} from "./Company"
+
 // originally , the global object of google has a lot of methods 
 // playing with these methods may break our app.
 // so to prevent other engineers from that, we can create a custom map object and limit it 
@@ -25,6 +28,26 @@ export class CustomMap{
             center: {
                 lat:0,
                 lng:0,
+            }
+        })
+    }
+
+    // bad code 
+    addUserMarker(user:User):void{
+        new google.maps.Marker({
+            map:this.googleMap,
+            position:{
+                lat:user.location.lat,
+                lng:user.location.lat
+            }
+        })
+    }
+    addCompanyMarker(company):void{
+        new google.maps.Marker({
+            map:this.googleMap,
+            position:{
+                lat:company.location.lat,
+                lng:company.location.lng
             }
         })
     }
