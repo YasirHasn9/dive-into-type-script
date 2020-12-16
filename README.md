@@ -2,6 +2,7 @@
 
 in this repo , i will document the journey of learning type-script
 
+<h1>The entire goal of ts is to help us catch errors</h1>
 <h1>Goal</h1>
 The goal of this project is to learn ts through building a project called maps where i can generate random company and random user. Each has its own information such as name,location, business ...etc
 
@@ -73,3 +74,13 @@ function functionDoesNotReturnAnyThing(): void {
 }
 
 <h3>|</h3> it means or when you have 2 or more that one type
+Sometimes, well , all the times , as programmers , we dont wanna repeat ourselves or make our code so long. in some cases, we build a main class/ object that relies on many class , in our case we have the "./CustomMap.ts" which relies on User and Company class. so to add them as a maker on the map we have to tell the addMarker method inside the CustomMap that these class will be instance of your argument "mappable" 
+addMarker(mappable: User | Company ){
+
+}  
+User and Company should have commonality in at least one of their properties that is going to be used inside the addMaker . Bur here we have a problem
+imagine if we have like 30- 10000 class that CustomMap relies upon , should use | between each one , NO?
+
+<h3>Interface</h3>
+interface here is the real Captain America, we can create an interface and set it to mappale:name of the interface 
+in this case we are telling the classes that wanna work with CustomMap , hey if you wanna work with class then you have to have this properties in this Interface with its types

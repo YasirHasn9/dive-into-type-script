@@ -8,5 +8,5 @@
  const customMap = new CustomMap("map")
 
 
- customMap.addUserMarker(user)
- customMap.addCompanyMarker(company)
+ customMap.addMaker(user)
+ customMap.addMaker(company)

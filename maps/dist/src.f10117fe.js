@@ -100439,6 +100439,10 @@ function () {
     };
   }
 
+  User.prototype.markContent = function () {
+    return "<h2>User name: " + this.name + " </h2>";
+  };
+
   return User;
 }();
 
@@ -100470,6 +100474,10 @@ function () {
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+
+  Company.prototype.markContent = function () {
+    return "\n        <div>\n        <h2>Company name: " + this.companyName + " </h2>\n        <h4>Catch phrase: " + this.catchPhrase + " </h4>\n        ";
+  };
 
   return Company;
 }();
@@ -100504,24 +100512,57 @@ function () {
     });
   } // bad code 
 
+  /*
+  addUserMarker(user:User):void{
+      new google.maps.Marker({
+          map:this.googleMap,
+          position:{
+              lat:user.location.lat,
+              lng:user.location.lat
+          }
+      })
+  }
+  addCompanyMarker(company:Company):void{
+      new google.maps.Marker({
+          map:this.googleMap,
+          position:{
+              lat:company.location.lat,
+              lng:company.location.lng
+          }
+      })
+  }
+  */
 
-  CustomMap.prototype.addUserMarker = function (user) {
-    new google.maps.Marker({
+  /*
+  the bad thing about the above code is that both have the same purpose
+  so , we dont we create one that works on both
+  */
+  // good code 
+  // but also it a bad approach
+
+
+  CustomMap.prototype.addMaker = function (mappale) {
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
-        lat: user.location.lat,
-        lng: user.location.lat
+        lat: mappale.location.lat,
+        lng: mappale.location.lng
       }
     });
-  };
+    /*
+    now the current issue with approach is that custom map has
+    a direct dependency on all the different classes inside of our
+    application , imagine if we have 30 class
+        addMaker(client: C1 | C2 | ... C3):void
+    */
 
-  CustomMap.prototype.addCompanyMarker = function (company) {
-    new google.maps.Marker({
-      map: this.googleMap,
-      position: {
-        lat: company.location.lat,
-        lng: company.location.lng
-      }
+    marker.addListener("click", function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: mappale.markContent()
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
@@ -100545,8 +100586,8 @@ var CustomMap_1 = require("./CustomMap");
 var user = new User_1.User();
 var company = new Company_1.Company();
 var customMap = new CustomMap_1.CustomMap("map");
-customMap.addUserMarker(user);
-customMap.addCompanyMarker(company);
+customMap.addMaker(user);
+customMap.addMaker(company);
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -100575,7 +100616,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58002" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51988" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

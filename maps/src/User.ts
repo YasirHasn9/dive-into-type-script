@@ -21,6 +21,9 @@ export class User {
             lng:parseFloat(faker.address.longitude()),
         }
     }
-
+    markContent():string {
+        return `<h2>User name: ${this.name} </h2>`
+    }
+}
 }
  

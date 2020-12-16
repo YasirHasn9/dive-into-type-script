@@ -1,5 +1,22 @@
-import {User} from "./User"
-import {Company} from "./Company"
+
+
+
+// before if you go down , you ll see that the custom map depends on several
+//  class, hoping that these class have something in common 
+// but with interface we can force these class obey the rule by telling 
+// them hey , if you show on the map , you have the rules of this interface
+interface Mappable {
+
+    // so each class that wanna show on the map , wether is Company , user or 
+    // whatever class , you should have this object with these properties
+    location: { 
+
+        lat:number,
+        lng:number
+    };
+    markContent(): string;
+
+}
 
 // originally , the global object of google has a lot of methods 
 // playing with these methods may break our app.
@@ -33,6 +50,7 @@ export class CustomMap{
     }
 
     // bad code 
+    /*
     addUserMarker(user:User):void{
         new google.maps.Marker({
             map:this.googleMap,
@@ -42,7 +60,7 @@ export class CustomMap{
             }
         })
     }
-    addCompanyMarker(company):void{
+    addCompanyMarker(company:Company):void{
         new google.maps.Marker({
             map:this.googleMap,
             position:{
@@ -51,5 +69,46 @@ export class CustomMap{
             }
         })
     }
+    */
+    /*
+    the bad thing about the above code is that both have the same purpose 
+    so , we dont we create one that works on both
+    */
+
+    // good code 
+    // but also it a bad approach
+    addMaker(mappale:Mappable):void {
+        const marker = new google.maps.Marker({
+            map:this.googleMap,
+            position: {
+                lat:mappale.location.lat,
+                lng:mappale.location.lng
+            }
+        })
+
+        /*
+        now the current issue with approach is that custom map has 
+        a direct dependency on all the different classes inside of our 
+        application , imagine if we have 30 class
+            addMaker(client: C1 | C2 | ... C3):void
+        */
+
+
+        marker.addListener("click" , () => {
+            const infoWindow = new google.maps.InfoWindow({
+                content: mappale.markContent()
+            })
+            infoWindow.open(this.googleMap, marker)
+        })
+
     
+    }
+
+    // best approach
+    // to fix the above code , we need to invert this dependency
+    // before the customMap was trying to satisfy  the classes that it relies on
+    // but now we are gonna tell them , hey if you wanna work with the class CustomMap , you
+    // have to obey the rules
+    // the rules here is if you wanna be on map , you have th=o have location that is object
+    // and that object should have lat and lng and both should be number 
 }
